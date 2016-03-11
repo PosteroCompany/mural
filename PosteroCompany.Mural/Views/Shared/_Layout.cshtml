@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewBag.Title - Postero Company</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/materialize/css/materialize.min.css" media="screen, projection" />
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <form action="@Url.Action("Login")" method="post" id="modal-acessar" class="modal">
+        <div class="modal-content">
+            <h4>Acessar</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Nome do usuário" id="username" name="username" type="text" class="validate" pattern="^[a-zA-Z0-9_]*$" required>
+                    <label for="username">Nome do usuário</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Senha" id="password" name="password" type="password" class="validate" required>
+                    <label for="password">Senha</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action waves-effect waves-green btn-flat">Acessar</button>
+            <button type="reset" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>
+        </div>
+    </form>
+    <form action="@Url.Action("Register")" method="post" id="modal-cadastro" class="modal">
+        <div class="modal-content">
+            <h4>Cadastro</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Nome do usuário" id="username" name="username" type="text" class="validate" pattern="^[a-zA-Z0-9_]*$" required>
+                    <label for="username">Nome do usuário</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Senha" id="password" name="password" type="password" class="validate" required>
+                    <label for="password">Senha</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Confirmação" id="passwordCheck" name="passwordCheck" type="password" class="validate" required>
+                    <label for="passwordCheck">Confirmação</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action waves-effect waves-green btn-flat">Cadastrar</button>
+            <button type="reset" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>
+        </div>
+    </form>
+    <form action="@Url.Action("New")" method="post" id="modal-nova" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Nova nota</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea placeholder="Nota" id="note" name="note" class="materialize-textarea validate" required></textarea>
+                    <label for="note">Nota</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action waves-effect waves-green btn-flat">Adicionar</button>
+            <button type="reset" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</button>
+        </div>
+    </form>
+
+    <header>
+        <nav>
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="@Url.Action("")" class="brand-logo">Mural</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        @if (Session["User"] != null)
+                        {
+                            <li><a>@("@" + (Session["User"] as User).Username)</a></li>
+                            <li><a data-target="modal-nova" class="modal-trigger">Nova</a></li>
+                            <li><a href="@Url.Action("Logout")">Sair</a></li>
+                        }
+                        else
+                        {
+                            <li><a data-target="modal-acessar" class="modal-trigger">Acessar</a></li>
+                            <li><a data-target="modal-cadastro" class="modal-trigger">Cadastro</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                &copy; @DateTime.Now.Year Postero Company
+                <a class="grey-text text-lighten-4 right" href="//github.com/PosteroCompany/mural">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/materialize/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
+    </script>
+    @RenderSection("Scripts")
+</body>
+</html>
