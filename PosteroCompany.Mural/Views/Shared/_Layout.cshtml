@@ -5,7 +5,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>@ViewBag.Title - Postero Company</title>
-    <link type="text/css" rel="stylesheet" href="~/Content/materialize/css/materialize.min.css" media="screen, projection" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen, projection" />
     <style>
         body {
             display: flex;
@@ -113,17 +113,15 @@
         <div class="footer-copyright">
             <div class="container">
                 &copy; @DateTime.Now.Year Postero Company
-                <a class="grey-text text-lighten-4 right" href="//github.com/PosteroCompany/mural">GitHub</a>
+                <a class="grey-text text-lighten-4 right" href="//github.com/PosteroCompany/mural" target="_blank">GitHub</a>
             </div>
         </div>
     </footer>
 
-    <script type="text/javascript" src="~/Scripts/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/materialize/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.modal-trigger').leanModal();
-        });
+        $(function () { $('.modal-trigger').leanModal(); });
     </script>
     @RenderSection("Scripts")
 </body>
