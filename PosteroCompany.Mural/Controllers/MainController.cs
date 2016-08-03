@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DevOne.Security.Cryptography.BCrypt;
 
 namespace PosteroCompany.Mural.Controllers
 {
     public class MainController : Controller
     {
         private Database db = new Database();
-        private const string salt = "@%$development salt#*&";
 
         // GET: /
         public ActionResult Index()
@@ -30,7 +30,7 @@ namespace PosteroCompany.Mural.Controllers
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
                 User user = db.Users.Find(username);
-                if (user != null && user.Password == Helpers.HashIt.SHA256($"{salt}{password}{salt}"))
+                if (user != null && BCryptHelper.CheckPassword(password, user.Password))
                 {
                     Session["User"] = user;
                 }
@@ -46,7 +46,7 @@ namespace PosteroCompany.Mural.Controllers
             {
                 User user = new User() {
                     Username = username.Trim(),
-                    Password = Helpers.HashIt.SHA256($"{salt}{password}{salt}"),
+                    Password = BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt()),
                     DtRegister = DateTime.Now
                 };
                 db.Users.Add(user);
