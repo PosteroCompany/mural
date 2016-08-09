@@ -10,7 +10,12 @@ namespace PosteroCompany.Mural.Controllers
 {
     public class MainController : Controller
     {
-        private Database db = new Database();
+        private Database db;
+
+        public MainController()
+        {
+            db = new Database();
+        }
 
         // GET: /
         public ActionResult Index()
@@ -47,7 +52,7 @@ namespace PosteroCompany.Mural.Controllers
                 User user = new User() {
                     Username = username.Trim(),
                     Password = BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt()),
-                    DtRegister = DateTime.Now
+                    DtRegister = DateTimeOffset.Now
                 };
                 db.Users.Add(user);
                 db.SaveChanges();
@@ -73,7 +78,7 @@ namespace PosteroCompany.Mural.Controllers
                 User user = db.Users.Find((Session["User"] as User).Username);
                 user.Notes.Add(new Note() {
                     PureContent = note,
-                    DtNote = DateTime.Now
+                    DtNote = DateTimeOffset.Now
                 });
                 db.SaveChanges();
             }

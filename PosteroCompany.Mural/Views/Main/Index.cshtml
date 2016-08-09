@@ -18,7 +18,7 @@
         @foreach (Note note in Model.OrderByDescending(n => n.DtNote))
         {
             <div class="col s12">
-                <p><time class="grey-text text-lighten-1" datetime="@note.DtNote.ToString()">@note.DtNote.ToLongDateString()</time></p>
+                <p><time class="grey-text text-lighten-1" datetime="@note.DtNote.ToString()">@note.DtNote.ToString()</time></p>
                 <div class="card">
                     <div class="card-content" style="max-height:25em; overflow-y:auto">
                         @Html.Raw(note.PureContent.MarkdownTransform())
