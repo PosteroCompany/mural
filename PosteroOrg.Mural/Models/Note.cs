@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PosteroCompany.Mural.Models
+namespace PosteroOrg.Mural.Models
 {
     public class Note
     {

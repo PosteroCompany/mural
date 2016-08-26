@@ -127,8 +127,8 @@
         $(function () {
             $('.modal-trigger').leanModal();
             document.querySelectorAll('time').forEach(function (element) {
-                var dt = element.getAttribute('datetime');
-                var momentDt = moment(dt);
+                var dt = element.getAttribute('datetime'),
+                    momentDt = moment(dt);
                 element.innerHTML = momentDt.fromNow();
                 element.setAttribute('title', momentDt.format('llll'));
             });

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PosteroCompany.Mural
+namespace PosteroOrg.Mural
 {
     public class ConfigurationManager
     {
