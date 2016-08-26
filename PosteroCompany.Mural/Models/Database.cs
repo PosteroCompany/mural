@@ -13,7 +13,7 @@ namespace PosteroCompany.Mural.Models
         // If you wish to target a different database and/or database provider, modify the 'Database' 
         // connection string in the application configuration file.
         public Database()
-            : base("name=Database")
+            : base(ConfigurationManager.Get("MURAL_CONNECTION_STRING") as string)
         {
         }
 
