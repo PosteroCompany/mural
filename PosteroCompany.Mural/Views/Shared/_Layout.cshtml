@@ -12,6 +12,7 @@
             min-height: 100vh;
             flex-direction: column;
         }
+
         main {
             flex: 1 0 auto;
         }
@@ -112,16 +113,26 @@
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                &copy; @DateTime.Now.Year Postero Company
-                <a class="grey-text text-lighten-4 right" href="//github.com/PosteroCompany/mural" target="_blank">GitHub</a>
+                &copy; @DateTime.Now.Year Póstero
+                <a class="grey-text text-lighten-4 right" href="//github.com/PosteroOrg/mural" target="_blank">GitHub</a>
             </div>
         </div>
     </footer>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/locale/pt-br.js"></script>
     <script>
-        $(function () { $('.modal-trigger').leanModal(); });
+        $(function () {
+            $('.modal-trigger').leanModal();
+            document.querySelectorAll('time').forEach(function (element) {
+                var dt = element.getAttribute('datetime');
+                var momentDt = moment(dt);
+                element.innerHTML = momentDt.fromNow();
+                element.setAttribute('title', momentDt.format('llll'));
+            });
+        });
     </script>
     @RenderSection("Scripts")
 </body>

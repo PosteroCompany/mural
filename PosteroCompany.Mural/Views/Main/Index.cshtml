@@ -18,9 +18,9 @@
         @foreach (Note note in Model.OrderByDescending(n => n.DtNote))
         {
             <div class="col s12">
-                <p><time class="grey-text text-lighten-1" datetime="@note.DtNote.ToString()">@note.DtNote.ToString()</time></p>
+                <p><time class="grey-text text-lighten-1" datetime="@note.DtNote.ToString("u")"></time></p>
                 <div class="card">
-                    <div class="card-content" style="max-height:25em; overflow-y:auto">
+                    <div class="card-content md-content" style="max-height:25em; overflow-y:auto">
                         @Html.Raw(note.PureContent.MarkdownTransform())
                     </div>
                     <div class="card-action">
@@ -38,7 +38,7 @@ else
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
+        $(function () {
             $('.card-action .open').on('click', function openNote() {
                 var content = $(this).closest('.card').find('.card-content').html();
                 $('#modal-nota .modal-content').html(content);
