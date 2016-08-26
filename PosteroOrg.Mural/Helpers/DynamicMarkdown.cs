@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using MarkdownSharp;
 
-namespace PosteroCompany.Mural
+namespace PosteroOrg.Mural
 {
     public static class DynamicMarkdown
     {

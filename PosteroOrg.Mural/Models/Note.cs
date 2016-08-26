@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PosteroCompany.Mural.Models
+namespace PosteroOrg.Mural.Models
 {
     public class Note
     {
         [Key]
         public int Id { get; set; }
-        public DateTime DtNote { get; set; }
+        public DateTimeOffset DtNote { get; set; }
         public string PureContent { get; set; }
 
         public string Username { get; set; }

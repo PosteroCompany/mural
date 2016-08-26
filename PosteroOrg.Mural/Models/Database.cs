@@ -1,4 +1,4 @@
-namespace PosteroCompany.Mural.Models
+namespace PosteroOrg.Mural.Models
 {
     using System;
     using System.Data.Entity;
@@ -8,12 +8,12 @@ namespace PosteroCompany.Mural.Models
     {
         // Your context has been configured to use a 'Database' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
-        // 'PosteroCompany.Mural.Models.Database' database on your LocalDb instance. 
+        // 'PosteroOrg.Mural.Models.Database' database on your LocalDb instance. 
         // 
         // If you wish to target a different database and/or database provider, modify the 'Database' 
         // connection string in the application configuration file.
         public Database()
-            : base("name=Database")
+            : base(ConfigurationManager.Get("MURAL_CONNECTION_STRING") as string)
         {
         }
 

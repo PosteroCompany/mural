@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PosteroCompany.Mural.Models
+namespace PosteroOrg.Mural.Models
 {
     public class User
     {
@@ -12,7 +12,7 @@ namespace PosteroCompany.Mural.Models
         public string Username { get; set; }
         [MaxLength(64)]
         public string Password { get; set; }
-        public DateTime DtRegister { get; set; }
+        public DateTimeOffset DtRegister { get; set; }
 
         public virtual ICollection<Note> Notes { get; set; }
     }
