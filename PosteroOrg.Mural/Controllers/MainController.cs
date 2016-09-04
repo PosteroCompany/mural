@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevOne.Security.Cryptography.BCrypt;
+using System.Text.RegularExpressions;
 
 namespace PosteroOrg.Mural.Controllers
 {
@@ -47,16 +48,20 @@ namespace PosteroOrg.Mural.Controllers
         [HttpPost]
         public ActionResult Register(string username, string password, string passwordCheck)
         {
-            if (!String.IsNullOrWhiteSpace(username) && db.Users.Find(username) == null && !String.IsNullOrWhiteSpace(password) && password == passwordCheck)
+            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password) && password == passwordCheck && db.Users.Find(username) == null)
             {
-                User user = new User() {
-                    Username = username.Trim(),
-                    Password = BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt()),
-                    DtRegister = DateTimeOffset.Now
-                };
-                db.Users.Add(user);
-                db.SaveChanges();
-                Session["User"] = user;
+                if (Regex.IsMatch(username, @"^[a-zA-Z0-9_]{6,}$") && Regex.IsMatch(password, @"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"))
+                {
+                    User user = new User()
+                    {
+                        Username = username.Trim(),
+                        Password = BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt()),
+                        DtRegister = DateTimeOffset.Now
+                    };
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    Session["User"] = user;
+                }                
             }
             return RedirectToAction("");
         }
