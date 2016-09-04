@@ -13,7 +13,7 @@ Este projeto foi feito com __ASP.NET 4.5__ (na abordagem __MVC__) e algumas incr
 - [Markdown](//www.nuget.org/packages/Markdown/)
 - [BCrypt](//www.nuget.org/packages/BCrypt/)
 - [Moment.js](//momentjs.com/)
-- [Materialize](//materializecss.com/)
+- [Bootstrap](//materializecss.com/) and [Bootswatch](http://bootswatch.com/)
 
 ## Contribuições
 

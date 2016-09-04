@@ -4,11 +4,19 @@
     ViewBag.Title = "Mural";
 }
 
-<div id="modal-nota" class="modal">
-    <div class="modal-content">
-    </div>
-    <div class="modal-footer">
-        <button class="modal-action modal-close waves-effect waves-red btn-flat">Fechar</button>
+<div id="modalNota" class="modal fade" role="dialog" aria-labelledby="modalNotaLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalNotaLabel"></h4>
+            </div>
+            <div class="modal-body md-content">
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -17,14 +25,16 @@
     <div class="row">
         @foreach (Note note in Model.OrderByDescending(n => n.DtNote))
         {
-            <div class="col s12">
-                <p><time class="grey-text text-lighten-1" datetime="@note.DtNote.ToString("u")"></time></p>
-                <div class="card">
-                    <div class="card-content md-content" style="max-height:25em; overflow-y:auto">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel panel-default nota">
+                    <div class="panel-heading text-right">
+                        <time class="text-muted" datetime="@note.DtNote.ToString("u")"></time>
+                    </div>
+                    <div class="panel-body md-content" style="max-height:10em; overflow:hidden">
                         @Html.Raw(note.PureContent.MarkdownTransform())
                     </div>
-                    <div class="card-action">
-                        <a class="open waves-effect btn-flat">Abrir</a>
+                    <div class="panel-footer">
+                        <button type="button" class="btn btn-default">Abrir</button>
                     </div>
                 </div>
             </div>
@@ -39,10 +49,13 @@ else
 @section Scripts {
     <script>
         $(function () {
-            $('.card-action .open').on('click', function openNote() {
-                var content = $(this).closest('.card').find('.card-content').html();
-                $('#modal-nota .modal-content').html(content);
-                $('#modal-nota').openModal();
+            $('.nota button').on('click', function openNote() {
+                var time = $(this).closest('.nota').find('.panel-heading time').clone();
+                var content = $(this).closest('.nota').find('.md-content').html();
+                $('#modalNota .modal-header time').remove();
+                $('#modalNota .modal-header h4').append(time);
+                $('#modalNota .modal-body').html(content);
+                $('#modalNota').modal('show');
             });
         });
     </script>

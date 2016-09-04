@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MarkdownSharp;
+﻿using MarkdownSharp;
 
 namespace PosteroOrg.Mural
 {
     public static class DynamicMarkdown
     {
+        private static MarkdownOptions Options = new MarkdownOptions
+        {
+            AutoHyperlink = true
+        };
+
         public static string MarkdownTransform(this string content)
         {
-            return new Markdown().Transform(content);
+            return new Markdown(Options).Transform(content);
         }
     }
 }
