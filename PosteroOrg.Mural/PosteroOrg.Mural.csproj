@@ -125,6 +125,7 @@
     <Content Include="apple-icon-precomposed.png" />
     <Content Include="apple-icon.png" />
     <Content Include="browserconfig.xml" />
+    <Content Include="Content\Images\Layout\og-image.PNG" />
     <Content Include="favicon-16x16.png" />
     <Content Include="favicon-32x32.png" />
     <Content Include="favicon-96x96.png" />
@@ -165,7 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
