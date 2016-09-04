@@ -169,18 +169,21 @@
 
     <main>
         <div class="container">
-            @foreach (var alert in (List<Alert>)TempData["Alerts"])
+            @if (TempData["Alerts"] != null)
             {
-                <div class="alert @(string.IsNullOrEmpty(alert.Type) ? "" : $"alert-{alert.Type}") alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    @if (!string.IsNullOrEmpty(alert.Title))
-                    {
-                        <strong>@alert.Title</strong>
-                    }
-                    @alert.Message
-                </div>
+                foreach (var alert in TempData["Alerts"] as List<Alert>)
+                {
+                    <div class="alert @(string.IsNullOrEmpty(alert.Type) ? "" : $"alert-{alert.Type}") alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        @if (!string.IsNullOrEmpty(alert.Title))
+                        {
+                            <strong>@alert.Title</strong>
+                        }
+                        @alert.Message
+                    </div>
+                }
             }
-            
+
             @RenderBody()
         </div>
     </main>
