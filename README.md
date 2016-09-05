@@ -1,4 +1,4 @@
-# Mural
+# [Mural](https://mural-demo.apphb.com)
 
 Um simples mural de notas formatadas com Markdown.
 
@@ -13,7 +13,7 @@ Este projeto foi feito com __ASP.NET 4.5__ (na abordagem __MVC__) e algumas incr
 - [Markdown](//www.nuget.org/packages/Markdown/)
 - [BCrypt](//www.nuget.org/packages/BCrypt/)
 - [Moment.js](//momentjs.com/)
-- [Bootstrap](//materializecss.com/) and [Bootswatch](http://bootswatch.com/)
+- [Bootstrap](//getbootstrap.com/) and [Bootswatch](//bootswatch.com/)
 
 ## Contribuições
 
